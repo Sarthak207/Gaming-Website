@@ -42,19 +42,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Developer",
+    title: "Rock paper scissors",
     icon: web,
   },
   {
-    title: "React Native Developer",
+    title: "Tic Tac Toe",
     icon: mobile,
   },
   {
-    title: "Backend Developer",
+    title: "ContraZone",
     icon: backend,
   },
   {
-    title: "Content Creator",
+    title: "Chess",
     icon: creator,
   },
 ];
@@ -129,7 +129,7 @@ const experiences = [
     ],
   },
   {
-    title: "React Native Developer",
+    title: "Tic Tac Toe",
     company_name: "Tesla",
     icon: tesla,
     iconBg: "#E6DEDD",
@@ -142,7 +142,7 @@ const experiences = [
     ],
   },
   {
-    title: "Web Developer",
+    title: "Rock paper scissors",
     company_name: "Shopify",
     icon: shopify,
     iconBg: "#383E56",
@@ -180,7 +180,7 @@ const testimonials = [
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
+      "I've never met a Rock paper scissors who truly cares about their clients' success like Rick does.",
     name: "Chris Brown",
     designation: "COO",
     company: "DEF Corp",

@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+    color-scheme: dark;
+}
+
+body {
+    background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Game Board */
+.game {
+    height: 60vmin;
+    width: 60vmin;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vmin;
+}
+
+/* Game Boxes */
+.box {
+    height: 18vmin;
+    width: 18vmin;
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.7);
+    font-size: 8vmin;
+    color: rgb(181, 48, 48);
+    background: linear-gradient(to right, #434343, #000000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: transform 0.2s ease-in-out;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+/* Buttons */
+button {
+    padding: 1rem;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    border: none;
+    background: linear-gradient(135deg, #804dee 0%, rgba(60, 51, 80, 0.8) 100%);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #bf61ff 0%, #00cea8 100%);
+    transform: scale(1.1);
+}
+
+/* Specific Buttons */
+#rstBtn, #exitBtn, #newBtn {
+    padding: 1rem;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    border: none;
+    background: linear-gradient(to right, #2f80ed, #56ccf2);
+    color: white;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+#rstBtn:hover, #exitBtn:hover, #newBtn:hover {
+    background: linear-gradient(to right, #fc6767, #ec008c);
+    transform: scale(1.1);
+}
+
+/* Message Container */
+#msg {
+    color: white;
+    font-size: 8vmin;
+    font-weight: bold;
+    background: linear-gradient(to top, #11998e, #38ef7d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.msg-container {
+    height: 80vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.hide {
+    display: none;
+}

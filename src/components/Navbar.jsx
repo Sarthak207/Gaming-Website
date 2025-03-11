@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import { styles } from "../styles";
-import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
+import { styles } from "../styles"; 
+import { logo, menu, close } from "../assets"; 
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +25,8 @@ const Navbar = () => {
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
+        
+        {/* Logo & Title */}
         <Link
           to="/"
           className="flex items-center gap-2"
@@ -35,24 +36,57 @@ const Navbar = () => {
           }}
         >
           <img src={logo} alt="logo" className="w-10 h-10 object-contain" />
-          <p className="text-[#FFD700] text-[20px] font-bold uppercase tracking-wider">
-            ContraZone <span className="sm:block hidden">🔥</span>
+          <p className="text-[#FFD700] text-[22px] font-bold uppercase tracking-wider">
+            GameVerse🔥 
+            {/* <span className="sm:block hidden">🔥</span> */}
           </p>
         </Link>
 
+        {/* Search Bar */}
+        <div className="hidden sm:flex flex-grow justify-center">
+          <input
+            type="text"
+            placeholder="Search games..."
+            className="px-4 py-2 w-[250px] rounded-lg border border-gray-300 focus:outline-none focus:border-[#FFD700]"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+
         {/* Desktop Navigation */}
-        <ul className="list-none hidden sm:flex flex-row gap-8">
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`${
-                active === nav.title ? "text-[#FFF]" : "text-[#FFD700]"
-              } hover:text-[#FFF] text-[16px] font-semibold uppercase cursor-pointer transition-all duration-200`}
-              onClick={() => setActive(nav.title)}
+        <ul className="list-none hidden sm:flex flex-row gap-6">
+          <li>
+            <Link
+              to="/about"
+              className="text-[#FFD700] hover:text-white text-[16px] font-semibold uppercase transition-all duration-200"
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
-          ))}
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/contact"
+              className="text-[#FFD700] hover:text-white text-[16px] font-semibold uppercase transition-all duration-200"
+            >
+              Contact
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/login"
+              className="text-[#FFD700] hover:text-white text-[16px] font-semibold uppercase transition-all duration-200"
+            >
+              Login
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/register"
+              className="bg-[#FFD700] text-black px-4 py-2 rounded-lg text-[16px] font-semibold uppercase transition-all duration-200 hover:bg-white"
+            >
+              Register
+            </Link>
+          </li>
         </ul>
 
         {/* Mobile Navigation */}
@@ -67,23 +101,45 @@ const Navbar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-5 bg-[#A60000] absolute top-16 right-4 min-w-[140px] z-10 rounded-lg shadow-md`}
+            } p-5 bg-[#A60000] absolute top-16 right-4 min-w-[180px] z-10 rounded-lg shadow-md`}
           >
             <ul className="list-none flex flex-col gap-4">
-              {navLinks.map((nav) => (
-                <li
-                  key={nav.id}
-                  className={`font-semibold text-[14px] uppercase cursor-pointer transition-all duration-200 ${
-                    active === nav.title ? "text-[#FFF]" : "text-[#FFD700]"
-                  } hover:text-[#FFF]`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
+              <li>
+                <Link
+                  to="/about"
+                  className="text-[#FFD700] hover:text-white text-[16px] font-semibold uppercase transition-all duration-200"
+                  onClick={() => setToggle(false)}
                 >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
-                </li>
-              ))}
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-[#FFD700] hover:text-white text-[16px] font-semibold uppercase transition-all duration-200"
+                  onClick={() => setToggle(false)}
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/login"
+                  className="text-[#FFD700] hover:text-white text-[14px] font-semibold uppercase transition-all duration-200"
+                  onClick={() => setToggle(false)}
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/register"
+                  className="bg-[#FFD700] text-black px-4 py-2 rounded-lg text-[14px] font-semibold uppercase transition-all duration-200 hover:bg-white"
+                  onClick={() => setToggle(false)}
+                >
+                  Register
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
