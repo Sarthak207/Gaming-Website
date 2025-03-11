@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: linear-gradient(90deg, #00cea8 0%, #bf61ff 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Header Styling */
+h1 {
+    color: #fff;
+    line-height: 5rem;
+    height: 5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-top: 2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Game Choices */
+.choices {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.choice {
+    height: 165px;
+    width: 165px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(to top, #434343, #000000);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.6);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.choice:hover {
+    cursor: pointer;
+    transform: scale(1.12);
+    background: linear-gradient(to right, #081b31, #0d2742);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Images inside choices */
+img {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.choice:hover img {
+    transform: scale(1.15);
+}
+
+/* Scoreboard */
+.score-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+#user-score, #comp-score {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #ffdd57;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Message Container */
+.msgContainer {
+    margin-top: 4rem;
+}
+
+#msg {
+    background: linear-gradient(to right, #081b31, #0d2742);
+    color: white;
+    font-size: 2rem;
+    display: inline-block;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+#msg:hover {
+    background: linear-gradient(to right, #fc6767, #ec008c);
+    transform: scale(1.1);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Exit Button */
+.Exit {
+    padding-top: 2rem;
+    text-align: center;
+}
+
+#exitBtn {
+    background: linear-gradient(to right, #fc6767, #ec008c);
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 1rem;
+    display: inline-block;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    outline: none;
+}
+
+#exitBtn:hover {
+    background: linear-gradient(to right, #ec008c, #6a00f4);
+    transform: scale(1.15);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Button Active State */
+#exitBtn:active {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Button Focus State */
+#exitBtn:focus {
+    outline: 3px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 3px;
+}

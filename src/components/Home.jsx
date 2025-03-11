@@ -15,10 +15,11 @@ const featuredGames = [
   },
   {
     id: 2,
-    title: "Cyber Assault",
+    title: "Stone Paper Scissors",
     genre: "FPS",
     rating: 4.6,
-    image: "src/assets/games/game2.jpg",
+    url: "/stonePaper.html",
+    image: "src/assets/Image2.png",
   },
   {
     id: 3,
