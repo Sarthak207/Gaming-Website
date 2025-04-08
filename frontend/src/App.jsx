@@ -1,7 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { About, Contact, Experience, Feedbacks, Home, Navbar,Footer, Tech, Works, StarsCanvas } from "./components";
+import {
+  About,
+  Contact,
+  Experience,
+  Feedbacks,
+  Home,
+  Navbar,
+  Footer,
+  StarsCanvas,
+} from "./components";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Games from "./components/Games"; // ✅ Import your new Games page
 
 const App = () => {
   return (
@@ -19,6 +29,7 @@ const App = () => {
           <Route path="/feedbacks" element={<Feedbacks />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/games" element={<Games />} /> {/* ✅ Added Games route */}
         </Routes>
 
         {/* Background Effect */}

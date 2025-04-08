@@ -1,79 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant, staggerContainer } from "../utils/motion";
 
-// Sample game data (you would move this to your constants file)
-const gamesData = [
-  {
-    id: 1,
-    title: "Cyber Legends",
-    category: "RPG",
-    image: "/src/assets/game1.webp",
-    rating: 4.8,
-    price: 59.99,
-    discount: 15,
-    tags: ["Open World", "Action", "Adventure"],
-  },
-  {
-    id: 2,
-    title: "Battlefield Heroes",
-    category: "FPS",
-    image: "/src/assets/game2.webp",
-    rating: 4.5,
-    price: 49.99,
-    discount: 0,
-    tags: ["Multiplayer", "Shooter", "Strategy"],
-  },
-  {
-    id: 3,
-    title: "Fantasy Realms",
-    category: "MMORPG",
-    image: "/src/assets/game3.webp",
-    rating: 4.7,
-    price: 39.99,
-    discount: 25,
-    tags: ["Fantasy", "Multiplayer", "Role-Playing"],
-  },
-  {
-    id: 4,
-    title: "Speed Racers",
-    category: "Racing",
-    image: "/src/assets/game4.webp",
-    rating: 4.3,
-    price: 29.99,
-    discount: 0,
-    tags: ["Racing", "Simulation", "Sports"],
-  },
-  {
-    id: 5,
-    title: "Zombie Apocalypse",
-    category: "Survival",
-    image: "/src/assets/game5.webp",
-    rating: 4.6,
-    price: 44.99,
-    discount: 10,
-    tags: ["Horror", "Survival", "Action"],
-  },
-  {
-    id: 6,
-    title: "Tactical Warfare",
-    category: "Strategy",
-    image: "/src/assets/game6.webp",
-    rating: 4.2,
-    price: 34.99,
-    discount: 0,
-    tags: ["Strategy", "Military", "Tactical"],
-  },
-];
-
 // Categories for filtering
 const categories = ["All", "RPG", "FPS", "MMORPG", "Racing", "Survival", "Strategy"];
 
 const GameCard = ({ game, index }) => {
-  const discountedPrice = game.discount 
-    ? (game.price - (game.price * game.discount / 100)).toFixed(2) 
+  const discountedPrice = game.discount
+    ? (game.price - (game.price * game.discount / 100)).toFixed(2)
     : null;
 
   return (
@@ -82,10 +18,10 @@ const GameCard = ({ game, index }) => {
       className="w-full sm:w-[300px] bg-[#1A1A1D] rounded-xl overflow-hidden shadow-lg border border-[#FFD700] group hover:transform hover:scale-105 transition-all duration-300"
     >
       <div className="relative h-[180px] overflow-hidden">
-        <img 
-          src={game.image} 
-          alt={game.title} 
-          className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" 
+        <img
+          src={game.image}
+          alt={game.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
           onError={(e) => {
             e.target.src = "https://via.placeholder.com/300x180?text=Game+Image";
           }}
@@ -99,17 +35,16 @@ const GameCard = ({ game, index }) => {
           {game.category}
         </div>
       </div>
-      
+
       <div className="p-4">
         <h3 className="text-[#FFD700] font-bold text-xl">{game.title}</h3>
-        
         <div className="flex items-center mt-2">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
-              <svg 
-                key={i} 
-                className={`w-4 h-4 ${i < Math.floor(game.rating) ? "text-[#FFD700]" : "text-gray-400"}`} 
-                fill="currentColor" 
+              <svg
+                key={i}
+                className={`w-4 h-4 ${i < Math.floor(game.rating) ? "text-[#FFD700]" : "text-gray-400"}`}
+                fill="currentColor"
                 viewBox="0 0 20 20"
               >
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -118,18 +53,18 @@ const GameCard = ({ game, index }) => {
           </div>
           <span className="ml-1 text-white text-sm">{game.rating}</span>
         </div>
-        
+
         <div className="flex flex-wrap gap-1 mt-2">
           {game.tags.map((tag, index) => (
-            <span 
-              key={index} 
+            <span
+              key={index}
               className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded-full"
             >
               {tag}
             </span>
           ))}
         </div>
-        
+
         <div className="mt-4 flex justify-between items-center">
           <div>
             {game.discount > 0 ? (
@@ -151,15 +86,21 @@ const GameCard = ({ game, index }) => {
 };
 
 const Games = () => {
+  const [games, setGames] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortOption, setSortOption] = useState("featured");
-  
-  // Filter games by category
-  const filteredGames = activeCategory === "All" 
-    ? gamesData 
-    : gamesData.filter(game => game.category === activeCategory);
-  
-  // Sort games based on selected option
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/games")
+      .then((res) => res.json())
+      .then((data) => setGames(data))
+      .catch((err) => console.error("Failed to fetch games:", err));
+  }, []);
+
+  const filteredGames = activeCategory === "All"
+    ? games
+    : games.filter((game) => game.category === activeCategory);
+
   const sortedGames = [...filteredGames].sort((a, b) => {
     switch (sortOption) {
       case "price-low":
@@ -168,8 +109,8 @@ const Games = () => {
         return b.price - a.price;
       case "rating":
         return b.rating - a.rating;
-      default: // featured
-        return 0; // maintain original order
+      default:
+        return 0;
     }
   });
 
@@ -184,7 +125,7 @@ const Games = () => {
         </h2>
       </motion.div>
 
-      {/* Filter and Sort Options */}
+      {/* Filter and Sort */}
       <div className="flex flex-wrap justify-between items-center mt-8 mb-6">
         <div className="flex flex-wrap gap-2 mb-4 sm:mb-0">
           {categories.map((category) => (
@@ -201,7 +142,6 @@ const Games = () => {
             </button>
           ))}
         </div>
-        
         <div className="relative">
           <select
             value={sortOption}
@@ -214,15 +154,15 @@ const Games = () => {
             <option value="rating">Top Rated</option>
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <svg className="fill-current h-4 w-4" viewBox="0 0 20 20">
               <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
             </svg>
           </div>
         </div>
       </div>
 
-      {/* Games Grid */}
-      <motion.div 
+      {/* Grid */}
+      <motion.div
         variants={staggerContainer()}
         initial="hidden"
         whileInView="show"
@@ -234,7 +174,6 @@ const Games = () => {
         ))}
       </motion.div>
 
-      {/* Load More Button */}
       <div className="flex justify-center mt-10">
         <button className="bg-[#FFD700] hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-lg transition-all duration-300 hover:scale-105">
           Load More Games
