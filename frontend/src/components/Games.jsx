@@ -3,11 +3,28 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant, staggerContainer } from "../utils/motion";
-
+import axios from "axios";
 // Categories for filtering
 const categories = ["All", "RPG", "FPS", "MMORPG", "Racing", "Survival", "Strategy"];
 
+
 const GameCard = ({ game, index }) => {
+  const [gameData, setGameData] = useState({});
+
+  useEffect(() => {
+    const getGame = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/games/${game.id}`);
+        console.log(res.data);
+        setGameData(res.data);
+      } catch (error) {
+        console.error("Error fetching game data:", error);
+      }
+    };
+
+    getGame();
+  }, [game.id]); 
+
   const discountedPrice = game.discount
     ? (game.price - (game.price * game.discount / 100)).toFixed(2)
     : null;
