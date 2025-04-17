@@ -13,6 +13,7 @@ import {
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Games from "./components/Games"; 
+import Signup from "./components/SignUp";
 
 const App = () => {
   return (
@@ -23,8 +24,8 @@ const App = () => {
 
         {/* Routes */}
         <Routes>
-          <Route path="login" element={<SignIn/>}/>
-          <Route path="signup" element={<SignUp/>}/>
+          <Route path="login" element={<Login/>}/>
+          <Route path="signup" element={<Signup/>}/>
           <Route path="register" element=""></Route>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
