@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "title": "Cyber Strike",
+      "category": "FPS",
+      "price": 59.99,
+      "discount": 20,
+      "rating": 4.5,
+      "tags": ["Multiplayer", "Sci-Fi", "Shooter"],
+      "image": "https://via.placeholder.com/300x180?text=Cyber+Strike"
+    },
+    {
+      "id": 2,
+      "title": "Mystic Realms",
+      "category": "RPG",
+      "price": 39.99,
+      "discount": 0,
+      "rating": 4.0,
+      "tags": ["Fantasy", "Adventure", "Open World"],
+      "image": "https://via.placeholder.com/300x180?text=Mystic+Realms"
+    },
+    {
+      "id": 3,
+      "title": "Speed Drift",
+      "category": "Racing",
+      "price": 29.99,
+      "discount": 10,
+      "rating": 4.2,
+      "tags": ["Cars", "Arcade", "Multiplayer"],
+      "image": "https://via.placeholder.com/300x180?text=Speed+Drift"
+    },
+    {
+      "id": 4,
+      "title": "Survive the Wild",
+      "category": "Survival",
+      "price": 24.99,
+      "discount": 15,
+      "rating": 3.8,
+      "tags": ["Crafting", "Exploration", "Sandbox"],
+      "image": "https://via.placeholder.com/300x180?text=Survive+the+Wild"
+    },
+    {
+      "id": 5,
+      "title": "Empire Control",
+      "category": "Strategy",
+      "price": 49.99,
+      "discount": 25,
+      "rating": 4.7,
+      "tags": ["Turn-Based", "War", "Empire"],
+      "image": "https://via.placeholder.com/300x180?text=Empire+Control"
+    },
+    {
+      "id": 6,
+      "title": "Legends of Eldoria",
+      "category": "MMORPG",
+      "price": 19.99,
+      "discount": 0,
+      "rating": 4.3,
+      "tags": ["Online", "Magic", "Roleplay"],
+      "image": "https://via.placeholder.com/300x180?text=Eldoria"
+    }
+  ]
+  

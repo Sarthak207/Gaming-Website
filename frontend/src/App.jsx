@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { SignIn, SignUp } from "@clerk/clerk-react";
 import {
   About,
   Contact,
@@ -11,7 +12,7 @@ import {
 } from "./components";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Games from "./components/Games"; // ✅ Import your new Games page
+import Games from "./components/Games"; 
 
 const App = () => {
   return (
@@ -22,12 +23,14 @@ const App = () => {
 
         {/* Routes */}
         <Routes>
+          <Route path="login" element={<SignIn/>}/>
+          <Route path="signup" element={<SignUp/>}/>
+          <Route path="register" element=""></Route>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/feedbacks" element={<Feedbacks />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/games" element={<Games />} /> {/* ✅ Added Games route */}
         </Routes>

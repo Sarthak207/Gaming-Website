@@ -4,17 +4,17 @@ import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant, staggerContainer } from "../utils/motion";
 import axios from "axios";
+
 // Categories for filtering
 const categories = ["All", "RPG", "FPS", "MMORPG", "Racing", "Survival", "Strategy"];
 
-
-const GameCard = ({ game, index }) => {
-  const [gameData, setGameData] = useState({});
+const GameCard = ({ gameId, index }) => {
+  const [gameData, setGameData] = useState(null);
 
   useEffect(() => {
     const getGame = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/games/${game.id}`);
+        const res = await axios.get(`http://localhost:4001/games/${gameId}`);
         console.log(res.data);
         setGameData(res.data);
       } catch (error) {
@@ -23,10 +23,14 @@ const GameCard = ({ game, index }) => {
     };
 
     getGame();
-  }, [game.id]); 
+  }, [gameId]);
 
-  const discountedPrice = game.discount
-    ? (game.price - (game.price * game.discount / 100)).toFixed(2)
+  if (!gameData) {
+    return <div>Loading...</div>;
+  }
+
+  const discountedPrice = gameData.discount
+    ? (gameData.price - (gameData.price * gameData.discount) / 100).toFixed(2)
     : null;
 
   return (
@@ -36,31 +40,31 @@ const GameCard = ({ game, index }) => {
     >
       <div className="relative h-[180px] overflow-hidden">
         <img
-          src={game.image}
-          alt={game.title}
+          src={gameData.image}
+          alt={gameData.title}
           className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
           onError={(e) => {
             e.target.src = "https://via.placeholder.com/300x180?text=Game+Image";
           }}
         />
-        {game.discount > 0 && (
+        {gameData.discount > 0 && (
           <div className="absolute top-2 right-2 bg-[#FF3131] text-white px-2 py-1 rounded-md font-bold text-sm">
-            {game.discount}% OFF
+            {gameData.discount}% OFF
           </div>
         )}
         <div className="absolute bottom-2 left-2 bg-black bg-opacity-70 text-[#FFD700] px-2 py-1 rounded-md text-sm">
-          {game.category}
+          {gameData.category}
         </div>
       </div>
 
       <div className="p-4">
-        <h3 className="text-[#FFD700] font-bold text-xl">{game.title}</h3>
+        <h3 className="text-[#FFD700] font-bold text-xl">{gameData.title}</h3>
         <div className="flex items-center mt-2">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
-                className={`w-4 h-4 ${i < Math.floor(game.rating) ? "text-[#FFD700]" : "text-gray-400"}`}
+                className={`w-4 h-4 ${i < Math.floor(gameData.rating) ? "text-[#FFD700]" : "text-gray-400"}`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -68,11 +72,11 @@ const GameCard = ({ game, index }) => {
               </svg>
             ))}
           </div>
-          <span className="ml-1 text-white text-sm">{game.rating}</span>
+          <span className="ml-1 text-white text-sm">{gameData.rating}</span>
         </div>
 
         <div className="flex flex-wrap gap-1 mt-2">
-          {game.tags.map((tag, index) => (
+          {gameData.tags.map((tag, index) => (
             <span
               key={index}
               className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded-full"
@@ -84,13 +88,13 @@ const GameCard = ({ game, index }) => {
 
         <div className="mt-4 flex justify-between items-center">
           <div>
-            {game.discount > 0 ? (
+            {gameData.discount > 0 ? (
               <div>
-                <span className="text-gray-400 line-through text-sm">${game.price}</span>
+                <span className="text-gray-400 line-through text-sm">${gameData.price}</span>
                 <span className="text-white font-bold ml-2">${discountedPrice}</span>
               </div>
             ) : (
-              <span className="text-white font-bold">${game.price}</span>
+              <span className="text-white font-bold">${gameData.price}</span>
             )}
           </div>
           <button className="bg-[#FF3131] hover:bg-red-700 text-white px-3 py-1 rounded-md font-medium text-sm transition-colors">
@@ -108,10 +112,16 @@ const Games = () => {
   const [sortOption, setSortOption] = useState("featured");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/games")
-      .then((res) => res.json())
-      .then((data) => setGames(data))
-      .catch((err) => console.error("Failed to fetch games:", err));
+    const fetchGames = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/games");
+        setGames(res.data);
+      } catch (error) {
+        console.error("Failed to fetch games:", error);
+      }
+    };
+
+    fetchGames();
   }, []);
 
   const filteredGames = activeCategory === "All"
@@ -187,7 +197,7 @@ const Games = () => {
         className="mt-8 flex flex-wrap gap-7 justify-center"
       >
         {sortedGames.map((game, index) => (
-          <GameCard key={game.id} game={game} index={index} />
+          <GameCard key={game.id} gameId={game.id} index={index} />
         ))}
       </motion.div>
 
