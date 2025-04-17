@@ -1,5 +1,5 @@
 import React from "react";
-import Tilt from "react-tilt";
+import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { services } from "../constants";
@@ -7,19 +7,18 @@ import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 
 const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className="xs:w-[250px] w-full">
+  <Tilt
+    tiltMaxAngleX={45} // Maximum tilt angle on the X-axis
+    tiltMaxAngleY={45} // Maximum tilt angle on the Y-axis
+    scale={1.05} // Scale of the component when hovered
+    transitionSpeed={450} // Speed of the tilt transition
+    className="xs:w-[250px] w-full"
+  >
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
       className="w-full border-4 border-[#FFD700] p-[1px] rounded-[20px] shadow-card bg-[#1A1A1D] flex justify-center items-center"
     >
-      <div
-        options={{
-          max: 45,
-          scale: 1.05,
-          speed: 450,
-        }}
-        className="bg-[#FFD700] rounded-[20px] py-5 px-12 min-h-[280px] flex justify-center items-center flex-col hover:scale-105 transition-transform duration-300"
-      >
+      <div className="bg-[#FFD700] rounded-[20px] py-5 px-12 min-h-[280px] flex justify-center items-center flex-col hover:scale-105 transition-transform duration-300">
         <img
           src={icon}
           alt={title}
