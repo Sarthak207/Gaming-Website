@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import gameRoute from "./route/game.route.js"; // Use default import here
+import gameRoute from "./route/game.route.js";
+import userRoute from "./route/user.js";
 const app = express();
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/games", gameRoute); // Use the gameRoute for the /games endpoint
+app.use('/api/user', userRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
