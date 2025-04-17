@@ -13,7 +13,7 @@ import {
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Games from "./components/Games"; 
-import Signup from "./components/SignUp";
+import Signup from "./components/SignUp"; // Ensure the path and case are correct
 
 const App = () => {
   return (
