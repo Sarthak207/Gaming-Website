@@ -13,7 +13,7 @@ import {
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Games from "./components/Games"; 
-import Signup from "./components/SignUp"; // Ensure the path and case are correct
+//import Signup from "./components/SignUp"; // Ensure the path and case are correct
 
 const App = () => {
   return (
@@ -25,7 +25,7 @@ const App = () => {
         {/* Routes */}
         <Routes>
           <Route path="login" element={<Login/>}/>
-          <Route path="signup" element={<Signup/>}/>
+          {/*<Route path="signup" element={<Signup/>}/>*}
           <Route path="register" element=""></Route>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
