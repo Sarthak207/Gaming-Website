@@ -14,7 +14,10 @@
     "@emailjs/browser": "^3.10.0",
     "@react-three/drei": "^9.56.24",
     "@react-three/fiber": "^8.11.1",
+    "@supabase/supabase-js": "^2.49.4",
     "axios": "^1.8.4",
+    "browserslist": "^4.24.4",
+    "caniuse-lite": "^1.0.30001714",
     "dotenv": "^16.5.0",
     "framer-motion": "^9.0.7",
     "maath": "^0.5.2",
@@ -23,6 +26,7 @@
     "react-parallax-tilt": "^1.7.291",
     "react-router-dom": "^6.8.1",
     "react-vertical-timeline-component": "^3.6.0",
+    "recharts": "^2.15.3",
     "three": "^0.149.0"
   },
   "devDependencies": {

@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { styles } from "../styles";
 import { logo, menu, close } from "../assets";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from "@clerk/clerk-react";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false); 
 
+  const [search, setSearch] = useSearchParams();
+
+  useEffect(()=>{
+    if(search.get("sign-in")){
+      setShowSignIn(true);
+    }
+  },[search]);
+  const handleOverlayClick= (e) =>{
+    if(e.target=== e.current){
+      setShowSignIn(false);
+    }
+  };
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 100);
@@ -18,6 +31,7 @@ const Navbar = () => {
   }, []);
 
   return (
+    <>
     <nav
       className={`${styles.paddingX} w-full flex items-center py-4 fixed top-0 z-20 transition-all duration-300 ${
         scrolled ? "bg-[#A60000] shadow-lg" : "bg-transparent"
@@ -50,9 +64,19 @@ const Navbar = () => {
               Contact
             </Link>
           </li>
+          <SignedIn>
+            <li>
+              <Link
+                to="/dashboard"
+                className="text-[#FFD700] hover:text-white text-[16px] font-semibold uppercase transition-all duration-200"
+              >
+                Dashboard
+              </Link>
+            </li>
+          </SignedIn>
           <SignedOut>
             <li>
-              <SignInButton>
+              <SignInButton onClick={()=> setShowSignIn(true)}>
                 <button className="text-[#FFD700] hover:text-white text-[16px] font-semibold uppercase transition-all duration-200">
                   Login
                 </button>
@@ -108,6 +132,17 @@ const Navbar = () => {
                   Contact
                 </Link>
               </li>
+              <SignedIn>
+                <li>
+                  <Link
+                    to="/dashboard"
+                    className="text-[#FFD700] hover:text-white text-[16px] font-semibold uppercase transition-all duration-200"
+                    onClick={() => setToggle(false)}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              </SignedIn>
               <SignedOut>
                 <li>
                   <SignInButton>
@@ -141,7 +176,18 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  );
+     {showSignIn && (
+      <div className="fixed inset-0 flex items-center justify-center bg-black "
+       onClick={handleOverlayClick}
+      >
+        <SignIn 
+          signUpForceRedirectUrl="/"
+          fallbackRedirectUrl="/"
+        />
+      </div>
+     )}
+  </>
+  )
 };
 
 export default Navbar;
