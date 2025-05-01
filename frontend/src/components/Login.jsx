@@ -1,3 +1,4 @@
+import React from "react";
 import { SignIn } from "@clerk/clerk-react";
 
 export default function Login() {
@@ -18,6 +19,7 @@ export default function Login() {
               formFieldLabel: "text-[#FFD700] font-medium",
             },
           }}
+          signUpUrl="/signup"
         />
       </div>
     </div>

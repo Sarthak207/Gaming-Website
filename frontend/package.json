@@ -10,7 +10,7 @@
     "start": "index.js"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^5.28.1",
+    "@clerk/clerk-react": "^5.29.0",
     "@emailjs/browser": "^3.10.0",
     "@react-three/drei": "^9.56.24",
     "@react-three/fiber": "^8.11.1",
@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0",
     "react-parallax-tilt": "^1.7.291",
     "react-router-dom": "^6.8.1",
+    "react-spinners": "^0.17.0",
     "react-vertical-timeline-component": "^3.6.0",
     "recharts": "^2.15.3",
     "three": "^0.149.0"

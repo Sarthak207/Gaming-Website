@@ -1,20 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Default Supabase client
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Function to create a Supabase client with an access token
-const supabaseClient = (supabaseAccessToken) => {
-  return createClient(supabaseUrl, supabaseKey, {
-    global: {
-      headers: {
-        Authorization: `Bearer ${supabaseAccessToken}`,
-      },
-    },
-  });
-};
-
-export { supabase, supabaseClient };
+export default supabase;

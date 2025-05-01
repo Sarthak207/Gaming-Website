@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/clerk-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import SyncUser from "./SyncUser";
+
 
 const Dashboard = () => {
-   <SyncUser /> 
   const { getToken, userId } = useAuth();
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -50,11 +49,11 @@ const Dashboard = () => {
   // Mock data for development - remove when connecting to real backend
   const setMockData = () => {
     setUserData({
-      username: "GameMaster2023",
-      totalGamesPlayed: 145,
-      gamesWon: 87,
-      gamesLost: 58,
-      winRate: 60,
+      username: "Sarthak Pardeshi",
+      totalGamesPlayed: 10,
+      gamesWon: 5,
+      gamesLost: 2,
+      winRate: 30,
       level: 24,
       points: 12450,
       recentGames: [
