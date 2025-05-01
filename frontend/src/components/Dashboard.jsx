@@ -57,26 +57,17 @@ const Dashboard = () => {
       level: 24,
       points: 12450,
       recentGames: [
-        { id: 1, game: "Fortnite", result: "Won", date: "2025-04-17", score: 320 },
-        { id: 2, game: "Call of Duty", result: "Lost", date: "2025-04-16", score: 180 },
-        { id: 3, game: "Minecraft", result: "Won", date: "2025-04-15", score: 450 },
-        { id: 4, game: "Among Us", result: "Won", date: "2025-04-14", score: 210 },
-        { id: 5, game: "Valorant", result: "Lost", date: "2025-04-13", score: 195 },
+        { id: 1, game: "Tic-Tac-Toe", result: "Won", date: "2025-04-17", score: 320 },
+        { id: 2, game: "Stone Paper Scissor", result: "Lost", date: "2025-04-16", score: 180 },
       ],
       gameStats: [
-        { name: "Fortnite", played: 42, won: 28, lost: 14 },
-        { name: "Call of Duty", played: 35, won: 18, lost: 17 },
-        { name: "Minecraft", played: 30, won: 23, lost: 7 },
-        { name: "Among Us", played: 25, won: 13, lost: 12 },
-        { name: "Valorant", played: 13, won: 5, lost: 8 },
+        { name: "Tic-Tac-Toe", played: 42, won: 28, lost: 14 },
+        { name: "Stone Paper scissor", played: 35, won: 18, lost: 17 },
       ],
       monthlyActivity: [
-        { month: "Nov", games: 18 },
-        { month: "Dec", games: 22 },
-        { month: "Jan", games: 30 },
-        { month: "Feb", games: 25 },
-        { month: "Mar", games: 28 },
-        { month: "Apr", games: 22 },
+        { month: "April", games: 18 },
+        { month: "March", games: 22 },
+
       ]
     });
     setLoading(false);
